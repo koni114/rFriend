@@ -1,0 +1,19 @@
+
+Call:
+lm(formula = height ~ weight, data = df.BMI)
+
+Residuals:
+         1          2          3          4 
+ 3.355e-16 -6.243e-15  1.148e-14 -5.573e-15 
+
+Coefficients:
+              Estimate Std. Error    t value Pr(>|t|)    
+(Intercept) -5.000e+01  2.743e-14 -1.823e+15   <2e-16 ***
+weight       3.333e+00  4.494e-16  7.418e+15   <2e-16 ***
+---
+Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+
+Residual standard error: 1.005e-14 on 2 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:      1 
+F-statistic: 5.502e+31 on 1 and 2 DF,  p-value: < 2.2e-16
+
