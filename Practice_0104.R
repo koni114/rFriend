@@ -417,6 +417,16 @@ Cars93_3 <- rename(Cars93_2,
 
 
   
-  
+# ÀÌº¯·®
+str(mtcars)
+library(MASS)
+str(Cars93)
+chisq.test(table(Cars93$Origin, Cars93$Make))
+
+library(psych)
+cor(iris[,c(1:4)])
+psych::corr.test(iris[,c(1:4)])
+
+
 
 
