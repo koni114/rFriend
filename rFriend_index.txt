@@ -1,0 +1,81 @@
+## rFriend index ##
+Practice_1218.R : filter(): 조건 별로 filtering : 결과 값은 조건이 적용된 filtering 된 dataFrame으로 편성
+		  slice() : index를 이용하여 행을 slicing 할 때 사용
+		  select() : 열을 선별 할 때 사용
+		  starts_with("문자") : 해당 문자열로 시작하는 열 선택
+		  ends_with("문자") : 해당 문자열로 끝나는 열 선택
+		  contains("") : 해당 문자열이 포함되는 열 선택
+		  matchs() : 정규 표현식에 해당하는 컬럼 선택
+		  one_of() : 변수 이름 글부에 포함된 모든 열 선택
+		  num_range() : (특정 접두사 + 숫자 범위)를 이용하여 열을 찾을 때
+		  rename() : 컬럼 명을 변경
+		  distinct() : 중복없는 유일한 값을 추출
+
+		  샘플링  
+		  sample_n() : 무작위로 n 개수 만큼 추출
+		  sample_frac() : 무작위(비율로 계산) 비율 만큼 추출
+		  집단별 층화 추출 : group_by() 이용
+
+		  mutate(), transmute() : 파생 변수 생성
+	          요약 통계 계산 : summarise	
+
+		  bind_rows(): 행 기준으로 dataFrame 병합
+
+    		  bind_rows() vs rbind()
+
+		  cumall(), cumany(),  cummean()
+		  recycled aggregates : 요약한 통계량을 다시 조건으로 사용하고 싶은 경우 
+
+		  window function : lead(), lag()
+		  
+
+Practice_1210.R : 1. 여러개의 dataFrame을 리스트로 묶기 ----
+		  1.1. R environment 상의 존재하는 여러 개의 DataFrame 중에서 특정 조건을 만족하는 DataFrame을 선별 : ls(pattern = "xx") 
+		  1.2. 하나의 List로 묶는 방법 : mget()
+		  1.3. List로 부터 특정 DataFrame을 Indexing 하는 방법 : list[[1]], list[["name"]]
+
+		  2. 문자열을 특정 길이로 만들고, 빈 자리는 '0'으로 채우는 방법 : sprintf {base}
+
+		  3. 소수 자리 수를 지정해주기 :  sprintf()
+
+		  4. 대용량 데이터 빠르게 읽어오는 방법 : fread()
+
+		  5. JSON data -> RDataframe 형태로 저장 : jsonlite package : fromJSON
+
+		  6. '#' 과 같은 특수 문자가 속해있는 문자를 가져오고 싶을 때, comment.char = ""
+
+Practice_0112.R : lasso 모형 - 변수 선택 예제 : lasso 모형을 만들고 변수 선택하기
+		  lars를 이용한 lasso 모형
+		  요인 분석(factor analysis)
+		  sqldf package : R에서 SQL 사용 할 수 있음
+		  aggregate(), sqldf() 를 비교해 가면서 사용
+		  melt(), cast() : 데이터 재 구조화
+		  R cleansing of console, environment, Plots
+		  unique(), dataframe[!duplicated(var), ], distinct() : 중복 없는 유일한 관측치 선별하기		  
+
+
+Practice_0107.R : dataFrame$variable, transform() : 데이터프레임 변수 신규 생성
+  		  which(), subset(), select : dataFrame 변수 선택
+		  which() VS subset()
+		  sort(), order(), arrange() : 데이터 정렬
+		  merge() : 동일 key 값 기준 결합
+		  데이터 변환(data transformation) :표준화 , z 변환
+
+Practice_0104.R : write.table() : 데이터 객체(dataframe)를 txt 파일로 저장
+		  cat() : 분석 결과(벡터)를 문자열과 결합하여 외부 파일로 저장
+		  capture.output() : 분석 결과(리스트)를 외부 파일로 저장
+		  str(), class(), dim(), head(), tail(), length(), names() : 객체를 관찰하는 함수
+		  dataFrame 변수를 활용하는 방법 3가지 : 1.1 with() , 1.2 attach(), detach()
+		  rep(), seq() : 일정한 구조/순차적 데이터 생성
+		  abs(x), sqrt(x), ceiling(x), floor(x), trunc(x), round(x), log(x), exp(x), factorial(x) : 숫자형을 다루는 함수들
+		  mean(), median(), range(), sd(), var(), min(), max(), IQR(), diff(), length(), rank()
+		  fBasics::skewness, fBasics:::kurtosis -> 왜도(skewness), 첨도(kurtosis)
+		  any() : 논리 연산자 중, 하나라도 TRUE면 TRUE를 return
+		  all() : 논리 연산자 중, 하나라도 FALSE 이면, FASLE를 return
+		  tapply(), sapply(), lapply(): 데이터 프레임 여러 변수에 함수 동시에 적용하기
+		  is.na(), sum(is.na()), na.rm = TRUE, na.omit(), complete.cases() : 결측치 확인 및 처리
+		  %any% 특별 연산자 다뤄보기
+		  R 문자함수 알아보기 : nchar(), substr(), paste(), sub(), gsub(), grep(), regexp(), gregexpr()
+		  연속형 변수를 범주형 변수로 변환하는 3가지 방법 : 1. cut(), 2. ifelse()
+		  +, -, *, /, ^, %*%, cbind(), rbind(), colMeans(), rowMeans(), colSums(), rowSums(), t()  : 행렬 연산
+		  rename(): dataFrame 변수명 변경 3가지 방법 : reshape::rename(), plyr::rename(), dplyr::rename()
