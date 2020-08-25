@@ -311,7 +311,7 @@ rm(student_id, stat_score)
 #            breaks -> 연속형 변수 cut 구간
 #            right  -> TRUE 면,  a < x <= b 처럼,  오른쪽 구간에 =를 포함
 #            right  -> FALSE 면, a <= x < b 처럼,  왼쪽 구간에 =를 포함
-
+#            include.lowest -> TRUE 면, 구간을 쪼갤 때, 가장 하단(지금 같은 경우는 0) 의 값을 포함함 --> [0, 60)
 score.d.f <- transform(score.d.f,
           stat_score_1 = cut(stat_score, breaks = c(0, 60, 70, 80, 90, 100),
                              include.lowest = FALSE,
