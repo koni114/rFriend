@@ -1,56 +1,56 @@
-# dplyr package Á¤º¹ÇÏ±â
-# ±âº»ÀûÀ¸·Î dplyr¿¡¼­ ¿­À» ¼±ÅÃÇÒ¶§, µû¿ÈÇ¥ »ç¿ëÇÏÁö ¾Ê´Â´Ù
-# but, ÇÔ¼ö ³»¿¡ ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© Á¶°ÇÀ» °Å´Â °æ¿ì, µû¿ÈÇ¥ »ç¿ë(¿¹¿Üµµ ÀÖÀ½)
+# dplyr package ì •ë³µí•˜ê¸°!
+# ê¸°ë³¸ì ìœ¼ë¡œ dplyrì—ì„œ ì—´ì„ ì„ íƒí• ë•Œ, ë”°ì˜´í‘œ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
+# but, í•¨ìˆ˜ ë‚´ì— í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ ì¡°ê±´ì„ ê±°ëŠ” ê²½ìš°, ë”°ì˜´í‘œ ì‚¬ìš©(ì˜ˆì™¸ë„ ìˆìŒ)
 library(dplyr)
 # 0. chain operator : %>%
-# chain operator ¸¦ »ç¿ëÇÏ¸é ¿¬¼ÓÀûÀ¸·Î ÇÔ¼ö°¡ Àû¿ëµÈ data¸¦ °è¼Ó »ç¿ëÇÒ ¼ö ÀÖÀ½
-# ** ´ÜÃàÅ°: ctrl + shift + M
+# chain operator ë¥¼ ì‚¬ìš©í•˜ë©´ ì—°ì†ì ìœ¼ë¡œ í•¨ìˆ˜ê°€ ì ìš©ëœ dataë¥¼ ê³„ì† ì‚¬ìš©í•  ìˆ˜ ìˆìŒ
+# ** ë‹¨ì¶•í‚¤: ctrl + shift + M
 
-# 1. filter(): Á¶°Ç º°·Î filtering : °á°ú °ªÀº Á¶°ÇÀÌ Àû¿ëµÈ filtering µÈ dataFrameÀ¸·Î Æí¼º ----
+# 1. filter(): ì¡°ê±´ ë³„ë¡œ filtering : ê²°ê³¼ ê°’ì€ ì¡°ê±´ì´ ì ìš©ëœ filtering ëœ dataFrameìœ¼ë¡œ í¸ì„± ----
 iris %>% filter(Sepal.Length < 5.0 & Petal.Length > 3.0)
 
-# 2. slice() : index¸¦ ÀÌ¿ëÇÏ¿© ÇàÀ» slicing ÇÒ ¶§ »ç¿ë ----
+# 2. slice() : indexë¥¼ ì´ìš©í•˜ì—¬ í–‰ì„ slicing í•  ë•Œ ì‚¬ìš© ----
 iris %>% slice(1:10) 
 
-# 3. select() : ¿­À» ¼±º° ÇÒ ¶§ »ç¿ë ----
+# 3. select() : ì—´ì„ ì„ ë³„ í•  ë•Œ ì‚¬ìš© ----
 iris %>% select(Sepal.Length, Petal.Length)
 
-# 3.1. starts_with("¹®ÀÚ") : ÇØ´ç ¹®ÀÚ¿­·Î ½ÃÀÛÇÏ´Â ¿­ ¼±ÅÃ
+# 3.1. starts_with("ë¬¸ì") : í•´ë‹¹ ë¬¸ìì—´ë¡œ ì‹œì‘í•˜ëŠ” ì—´ ì„ íƒ
 iris %>% select(starts_with("Sepal"))
 
-# 3.2. ends_with("¹®ÀÚ") : ÇØ´ç ¹®ÀÚ¿­·Î ³¡³ª´Â ¿­ ¼±ÅÃ
+# 3.2. ends_with("ë¬¸ì") : í•´ë‹¹ ë¬¸ìì—´ë¡œ ëë‚˜ëŠ” ì—´ ì„ íƒ
 iris %>% select(ends_with("Length"))
 
-# 3.3 contains("") : ÇØ´ç ¹®ÀÚ¿­ÀÌ Æ÷ÇÔµÇ´Â ¿­ ¼±ÅÃ
+# 3.3 contains("") : í•´ë‹¹ ë¬¸ìì—´ì´ í¬í•¨ë˜ëŠ” ì—´ ì„ íƒ
 iris %>% select(contains("Sep"))
 
-# 3.4 matchs() : Á¤±Ô Ç¥Çö½Ä¿¡ ÇØ´çÇÏ´Â ÄÃ·³ ¼±ÅÃ
+# 3.4 matchs() : ì •ê·œ í‘œí˜„ì‹ì— í•´ë‹¹í•˜ëŠ” ì»¬ëŸ¼ ì„ íƒ
 
-# 3.5 one_of() : º¯¼ö ÀÌ¸§ ±ÛºÎ¿¡ Æ÷ÇÔµÈ ¸ğµç ¿­ ¼±ÅÃ
-# ** ±×³É select¸¸À» »ç¿ëÇÏ´Â °Í°úÀÇ Â÷ÀÌÁ¡ : one_of()¸¦ »ç¿ëÇÏ¸é ÇØ´ç Á¶°ÇÀÇ ¿­ÀÌ ÇÏ³ªµµ ¾ø´õ¶óµµ error¸¦ ¹ß»ı½ÃÅ°Áö ¾ÊÀ½
+# 3.5 one_of() : ë³€ìˆ˜ ì´ë¦„ ê¸€ë¶€ì— í¬í•¨ëœ ëª¨ë“  ì—´ ì„ íƒ
+# ** ê·¸ëƒ¥ selectë§Œì„ ì‚¬ìš©í•˜ëŠ” ê²ƒê³¼ì˜ ì°¨ì´ì  : one_of()ë¥¼ ì‚¬ìš©í•˜ë©´ í•´ë‹¹ ì¡°ê±´ì˜ ì—´ì´ í•˜ë‚˜ë„ ì—†ë”ë¼ë„ errorë¥¼ ë°œìƒì‹œí‚¤ì§€ ì•ŠìŒ
 vars <- c("test1", "test2", "test3")
-iris %>% select(one_of(vars))  # warning¸¸ ¹ß»ı½ÃÅ°°í, row 0 retrun
-iris %>% select(vars)  # error ¹ß»ı
+iris %>% select(one_of(vars))  # warningë§Œ ë°œìƒì‹œí‚¤ê³ , row 0 retrun
+iris %>% select(vars)  # error ë°œìƒ
 
-# 3.6 num_range() : (Æ¯Á¤ Á¢µÎ»ç + ¼ıÀÚ ¹üÀ§)¸¦ ÀÌ¿ëÇÏ¿© ¿­À» Ã£À» ¶§
+# 3.6 num_range() : (íŠ¹ì • ì ‘ë‘ì‚¬ + ìˆ«ì ë²”ìœ„)ë¥¼ ì´ìš©í•˜ì—¬ ì—´ì„ ì°¾ì„ ë•Œ
 iris %>% select(num_range("V", 2:3))
 
-# 4. rename() : ÄÃ·³ ¸íÀ» º¯°æ ----
-# ** ÁÖÀÇ reshape::rename °ú °ãÄ¡Áö ¾Ê°Ô ÁÖÀÇ!! 
-# reshape::rename Àº ÄÃ·³¸í¿¡ µû¿ÈÇ¥ Æ÷ÇÔ O
-# dplyr::rename Àº ÄÃ·³¸í¿¡ µû¿ÈÇ¥ Æ÷ÇÔ X
+# 4. rename() : ì»¬ëŸ¼ ëª…ì„ ë³€ê²½ ----
+# ** ì£¼ì˜ reshape::rename ê³¼ ê²¹ì¹˜ì§€ ì•Šê²Œ ì£¼ì˜!! 
+# reshape::rename ì€ ì»¬ëŸ¼ëª…ì— ë”°ì˜´í‘œ í¬í•¨ O
+# dplyr::rename ì€ ì»¬ëŸ¼ëª…ì— ë”°ì˜´í‘œ í¬í•¨ X
 
 iris %>% rename(V10 = Sepal.Length, V20 = Sepal.Width)
 
-# 5. distinct() : Áßº¹¾ø´Â À¯ÀÏÇÑ °ªÀ» ÃßÃâ ----
+# 5. distinct() : ì¤‘ë³µì—†ëŠ” ìœ ì¼í•œ ê°’ì„ ì¶”ì¶œ ----
 
 # dplyr::distinct() VS base::unique()
 
-# 5.1. ¼º´É 
-#           dplyr::distinct() -> ºü¸§ 
-#           base::unique()    -> ´À¸²
+# 5.1. ì„±ëŠ¥ 
+#           dplyr::distinct() -> ë¹ ë¦„ 
+#           base::unique()    -> ëŠë¦¼
 
-# 5.2. return type - º¯¼ö(¿­) ÇÑ°³ ¼±ÅÃÇÒ ¶§  
+# 5.2. return type - ë³€ìˆ˜(ì—´) í•œê°œ ì„ íƒí•  ë•Œ  
 #            dplyr::distinct() -> data.frame
 #            base::unique()    -> vector
 
@@ -58,32 +58,32 @@ iris %>% distinct(Sepal.Length)
 unique(iris[,c("Sepal.Length", "Petal.Length")])
 unique(iris[,"Sepal.Length"])
 
-# 6. »ùÇÃ¸µ ----
-# 6.1. sample_n() : ¹«ÀÛÀ§·Î n °³¼ö ¸¸Å­ ÃßÃâ
-#                   replace = T : º¹¿ø ÃßÃâ                     
-iris %>% sample_n(20, replace = T)  # ¹«ÀÛÀ§·Î 20°³, º¹¿ø ÃßÃâ  
+# 6. ìƒ˜í”Œë§ ----
+# 6.1. sample_n() : ë¬´ì‘ìœ„ë¡œ n ê°œìˆ˜ ë§Œí¼ ì¶”ì¶œ
+#                   replace = T : ë³µì› ì¶”ì¶œ                     
+iris %>% sample_n(20, replace = T)  # ë¬´ì‘ìœ„ë¡œ 20ê°œ, ë³µì› ì¶”ì¶œ  
 
-# 6.2. sample_frac() : ¹«ÀÛÀ§(ºñÀ²·Î °è»ê) ºñÀ² ¸¸Å­ ÃßÃâ
-iris %>% sample_frac(0.2, replace = F)  #  ¹«ÀÛÀ§·Î 20%, ºñº¹¿ø ÃßÃâ
+# 6.2. sample_frac() : ë¬´ì‘ìœ„(ë¹„ìœ¨ë¡œ ê³„ì‚°) ë¹„ìœ¨ ë§Œí¼ ì¶”ì¶œ
+iris %>% sample_frac(0.2, replace = F)  #  ë¬´ì‘ìœ„ë¡œ 20%, ë¹„ë³µì› ì¶”ì¶œ
 
-# 6.3. Áı´Üº° ÃşÈ­ ÃßÃâ : group_by() ÀÌ¿ë
-iris %>% group_by(Species) %>% sample_n(10)  # Species º°·Î, 10°³¾¿ ÃşÈ­ ÃßÃâ
+# 6.3. ì§‘ë‹¨ë³„ ì¸µí™” ì¶”ì¶œ : group_by() ì´ìš©
+iris %>% group_by(Species) %>% sample_n(10)  # Species ë³„ë¡œ, 10ê°œì”© ì¸µí™” ì¶”ì¶œ
 
-# 7. mutate(), transmute() : ÆÄ»ı º¯¼ö »ı¼º
-# 7.1. mutate()     : ±âÁ¸º¯¼ö + ½Å±Ôº¯¼ö±îÁö ÀúÀå
-# 7.2. transmute()  : ½Å±Ôº¯¼ö ÀúÀå
+# 7. mutate(), transmute() : íŒŒìƒ ë³€ìˆ˜ ìƒì„±
+# 7.1. mutate()     : ê¸°ì¡´ë³€ìˆ˜ + ì‹ ê·œë³€ìˆ˜ê¹Œì§€ ì €ì¥
+# 7.2. transmute()  : ì‹ ê·œë³€ìˆ˜ ì €ì¥
 
-iris %>% mutate(sum = Sepal.Length + Sepal.Width + Petal.Length + Petal.Width)     # ±âÁ¸º¯¼ö + ÆÄ»ıº¯¼ö ÀúÀå
-iris %>% transmute(sum = Sepal.Length + Sepal.Width + Petal.Length + Petal.Width)  # ÆÄ»ıº¯¼ö¸¸ ÀúÀå
+iris %>% mutate(sum = Sepal.Length + Sepal.Width + Petal.Length + Petal.Width)     # ê¸°ì¡´ë³€ìˆ˜ + íŒŒìƒë³€ìˆ˜ ì €ì¥
+iris %>% transmute(sum = Sepal.Length + Sepal.Width + Petal.Length + Petal.Width)  # íŒŒìƒë³€ìˆ˜ë§Œ ì €ì¥
 
-# 8. ¿ä¾à Åë°è °è»ê : summarise ----
+# 8. ìš”ì•½ í†µê³„ ê³„ì‚° : summarise ----
 iris %>% summarize(
                     mean.Sepal.Length = mean(Sepal.Length),
                     mean.Petal.Length = mean(Petal.Length)
                    )
 
-# 9. bind_rows(): Çà ±âÁØÀ¸·Î dataFrame º´ÇÕ ----
-# rbind() ¿Í À¯»çÇÑ ±â´É ¼öÇà, µÎ °³ÀÇ ÇÔ¼ö¸¦ ºñ±³ÇÏ¸é¼­ ¿¹½Ã ÁøÇà
+# 9. bind_rows(): í–‰ ê¸°ì¤€ìœ¼ë¡œ dataFrame ë³‘í•© ----
+# rbind() ì™€ ìœ ì‚¬í•œ ê¸°ëŠ¥ ìˆ˜í–‰, ë‘ ê°œì˜ í•¨ìˆ˜ë¥¼ ë¹„êµí•˜ë©´ì„œ ì˜ˆì‹œ ì§„í–‰
 
 df.1 <- data.frame(x = 1:3, y = 1:3) 
 df.2 <- data.frame(x = 4:6, y = 4:6)
@@ -94,66 +94,66 @@ rbind(df.1, df.2)
 
 # bind_rows() vs rbind()
 
-# 9.1. ¿­ ¸ÅÄª ¿©ºÎ  
-#              bind_rows()  : µÎ °³ÀÇ dataFrameÀÌ ¿Ïº®È÷ ¸ÅÄª µÇÁö ¾Ê¾Æµµ º´ÇÕ µÊ. ¿­ÀÌ ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì, NA Ã³¸®
-#                             Outer Join°ú ºñ½ÁÇÑ °³³ä
-#              rbind()      : ¿­ÀÌ ¿Ïº®È÷ ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é, error ¹ß»ı
+# 9.1. ì—´ ë§¤ì¹­ ì—¬ë¶€  
+#              bind_rows()  : ë‘ ê°œì˜ dataFrameì´ ì™„ë²½íˆ ë§¤ì¹­ ë˜ì§€ ì•Šì•„ë„ ë³‘í•© ë¨. ì—´ì´ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°, NA ì²˜ë¦¬
+#                             Outer Joinê³¼ ë¹„ìŠ·í•œ ê°œë…
+#              rbind()      : ì—´ì´ ì™„ë²½íˆ ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´, error ë°œìƒ
 
-bind_rows(df.1, df.3)  # y¿Í z ÄÃ·³ÀÌ ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì¿¡µµ error¸¦ ¹ß»ı½ÃÅ°Áö ¾Ê°í NA Ã³¸® ÈÄ º´ÇÕ
-rbind(df.1, df.3)      # error ¹ß»ı
+bind_rows(df.1, df.3)  # yì™€ z ì»¬ëŸ¼ì´ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°ì—ë„ errorë¥¼ ë°œìƒì‹œí‚¤ì§€ ì•Šê³  NA ì²˜ë¦¬ í›„ ë³‘í•©
+rbind(df.1, df.3)      # error ë°œìƒ
 
-# 9.2. ÇÕÄ¡±â Àü ¿øÃµ dataFrame ÀÇ ¿©ºÎ ÆÄ¾Ç
-#              bind_rows()  : id parameter ¸¦ ÀÌ¿ëÇØ ÇÕÄ¡±â Àü dataFrame ¾Ë ¼ö ÀÖÀ½. ¾à°£ÀÇ Æ®¸¯ ÇÊ¿ä
-#              rbind()      : ¾Ë ¼ö ¾øÀ½
+# 9.2. í•©ì¹˜ê¸° ì „ ì›ì²œ dataFrame ì˜ ì—¬ë¶€ íŒŒì•…
+#              bind_rows()  : id parameter ë¥¼ ì´ìš©í•´ í•©ì¹˜ê¸° ì „ dataFrame ì•Œ ìˆ˜ ìˆìŒ. ì•½ê°„ì˜ íŠ¸ë¦­ í•„ìš”
+#              rbind()      : ì•Œ ìˆ˜ ì—†ìŒ
 
-bind_rows(list(grp_1 = df.1, grp_2 = df.2), .id = "group_id")  # .id ÀÓÀ» Á¶½ÉÇÏÀÚ
-rbind()  # ºÒ°¡´É
+bind_rows(list(grp_1 = df.1, grp_2 = df.2), .id = "group_id")  # .id ì„ì„ ì¡°ì‹¬í•˜ì
+rbind()  # ë¶ˆê°€ëŠ¥
 
-# 9.3. Ã³¸® ¼Óµµ
-#              bind_rows()  : ¼Óµµ°¡ ÈÎ¾À ºü¸§(¾à 261¹è)
-#              rbind()      : ´À¸²
+# 9.3. ì²˜ë¦¬ ì†ë„
+#              bind_rows()  : ì†ë„ê°€ í›¨ì”¬ ë¹ ë¦„(ì•½ 261ë°°)
+#              rbind()      : ëŠë¦¼
 
 one <- data.frame(c(x = c(1:1000000), y = c(1:1000000)))
 two <- data.frame(c(x = c(1:1000000), y = c(1:1000000)))
 
-system.time(rbind(one, two))      # 21ÃÊ
-system.time(bind_rows(one, two))  # 0.17ÃÊ
+system.time(rbind(one, two))      # 21ì´ˆ
+system.time(bind_rows(one, two))  # 0.17ì´ˆ
 
-# 10. bind_cols()  : ¿­ ±âÁØÀ¸·Î dataFrameÀ» ÇÕÄ¥ ¶§ ----
-# bind_rows() ¿Í ´ëºÎºĞ À¯»ç.
-# ** ´Ù¸¥Á¡ -> bind_rows¿Í ´Ù¸£°Ô ÇàÀÇ °³¼ö°¡ °°¾Æ¾ß¸¸ º´ÇÕ °¡´É
+# 10. bind_cols()  : ì—´ ê¸°ì¤€ìœ¼ë¡œ dataFrameì„ í•©ì¹  ë•Œ ----
+# bind_rows() ì™€ ëŒ€ë¶€ë¶„ ìœ ì‚¬.
+# ** ë‹¤ë¥¸ì  -> bind_rowsì™€ ë‹¤ë¥´ê²Œ í–‰ì˜ ê°œìˆ˜ê°€ ê°™ì•„ì•¼ë§Œ ë³‘í•© ê°€ëŠ¥
 
-# 11. all_equal() : µÎ °³ÀÇ dataFrame À» ºñ±³ ÇÒ ¶§ ----
-# ÇØ´ç function »ç¿ë ½Ã, dataFrame ÀÇ row, column ¼ø¼­µµ È®ÀÎÇÏ¸é¼­ °°ÀºÁö check °¡´É
-#  -> ignore_row_order, ignore_col_order ¸¦ paramÀ¸·Î ÀÌ¿ëÇÏ¿© È®ÀÎ °¡´É
+# 11. all_equal() : ë‘ ê°œì˜ dataFrame ì„ ë¹„êµ í•  ë•Œ ----
+# í•´ë‹¹ function ì‚¬ìš© ì‹œ, dataFrame ì˜ row, column ìˆœì„œë„ í™•ì¸í•˜ë©´ì„œ ê°™ì€ì§€ check ê°€ëŠ¥
+#  -> ignore_row_order, ignore_col_order ë¥¼ paramìœ¼ë¡œ ì´ìš©í•˜ì—¬ í™•ì¸ ê°€ëŠ¥
 
 all_equal(target, current, # two data frame to compare
-          ignore_col_order = TRUE, # TRUE : ¿­ ¼ø¼­ ¹«½Ã -> ¼ø¼­°¡ ´Ş¶óµµ °°À¸¸é TRUE return
-          ignore_row_order = TRUE, # TRUE : Çà ¼ø¼­ ¹«½Ã -> ¼ø¼­°¡ ´Ş¶óµµ °°À¸¸é TRUE return
+          ignore_col_order = TRUE, # TRUE : ì—´ ìˆœì„œ ë¬´ì‹œ -> ìˆœì„œê°€ ë‹¬ë¼ë„ ê°™ìœ¼ë©´ TRUE return
+          ignore_row_order = TRUE, # TRUE : í–‰ ìˆœì„œ ë¬´ì‹œ -> ìˆœì„œê°€ ë‹¬ë¼ë„ ê°™ìœ¼ë©´ TRUE return
           convert = FALSE # Should similar classes be converted? 
                           # Currently this will convert factor to character and integer to double.?)
           )
 
-# 12. cumall(), cumany() : ±×·ì º°·Î Á¶°Ç È®ÀÎ ÈÄ, slicing ÇÏ°í ½ÍÀ» ¶§ ----
-# 12.1. cumall() : ±×·ì º° ÇØ´ç Á¶°ÇÀÌ ÇÏ³ª¶óµµ ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é ÀüºÎ Á¦¿Ü -> filter ÇÔ¼ö ³»ºÎÀûÀ¸·Î »ç¿ë
-iris %>% group_by(Species) %>% filter(cumall(Sepal.Length > 3.0)) # ¸ğµç Á¾¿¡ ´ëÇØ¼­, 3.0 º¸´Ù Å©¹Ç·Î ÀüºÎ Ãâ·Â 
+# 12. cumall(), cumany() : ê·¸ë£¹ ë³„ë¡œ ì¡°ê±´ í™•ì¸ í›„, slicing í•˜ê³  ì‹¶ì„ ë•Œ ----
+# 12.1. cumall() : ê·¸ë£¹ ë³„ í•´ë‹¹ ì¡°ê±´ì´ í•˜ë‚˜ë¼ë„ ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´ ì „ë¶€ ì œì™¸ -> filter í•¨ìˆ˜ ë‚´ë¶€ì ìœ¼ë¡œ ì‚¬ìš©
+iris %>% group_by(Species) %>% filter(cumall(Sepal.Length > 3.0)) # ëª¨ë“  ì¢…ì— ëŒ€í•´ì„œ, 3.0 ë³´ë‹¤ í¬ë¯€ë¡œ ì „ë¶€ ì¶œë ¥ 
                                                                   
 
-# 12.2. cumany() : ±×·ì º° ÇØ´ç Á¶°ÇÀÌ ÇÑ°³¶óµµ ¸Â´Â °ÍÀÌ ÀÖÀ¸¸é ÀüºÎ Ãâ·Â -> filter ÇÔ¼ö ³»ºÎÀûÀ¸·Î »ç¿ë
-iris %>% group_by(Species) %>% filter(cumany(Sepal.Length > 5.0)) # ¸ğµç Á¾¿¡ ´ëÇØ¼­, Sepal.Length °ªÀÌ ÇÑ °³¶óµµ 5.0 º¸´Ù Å« °ÍÀÌ
-                                                                  # ÀÖÀ¸¹Ç·Î, ÀüºÎ Ãâ·Â
-# 13. cummean() : Æ¯Á¤ °ªÀ» ´©ÀûÇØ °¡¸é¼­ mean ¹İÈ¯ ----
+# 12.2. cumany() : ê·¸ë£¹ ë³„ í•´ë‹¹ ì¡°ê±´ì´ í•œê°œë¼ë„ ë§ëŠ” ê²ƒì´ ìˆìœ¼ë©´ ì „ë¶€ ì¶œë ¥ -> filter í•¨ìˆ˜ ë‚´ë¶€ì ìœ¼ë¡œ ì‚¬ìš©
+iris %>% group_by(Species) %>% filter(cumany(Sepal.Length > 5.0)) # ëª¨ë“  ì¢…ì— ëŒ€í•´ì„œ, Sepal.Length ê°’ì´ í•œ ê°œë¼ë„ 5.0 ë³´ë‹¤ í° ê²ƒì´
+                                                                  # ìˆìœ¼ë¯€ë¡œ, ì „ë¶€ ì¶œë ¥
+# 13. cummean() : íŠ¹ì • ê°’ì„ ëˆ„ì í•´ ê°€ë©´ì„œ mean ë°˜í™˜ ----
 iris %>% mutate(cummean.iris = cummean(Sepal.Length))
 
-# 14. recycled aggregates : ¿ä¾àÇÑ Åë°è·®À» ´Ù½Ã Á¶°ÇÀ¸·Î »ç¿ëÇÏ°í ½ÍÀº °æ¿ì ----
-iris %>%  group_by(Species) %>% filter(Sepal.Length > mean(Sepal.Length))  # Species º°·Î Sepal.Length ÀÇ Æò±Õ °ªº¸´Ù Å« row¸¦ Ãâ·Â
+# 14. recycled aggregates : ìš”ì•½í•œ í†µê³„ëŸ‰ì„ ë‹¤ì‹œ ì¡°ê±´ìœ¼ë¡œ ì‚¬ìš©í•˜ê³  ì‹¶ì€ ê²½ìš° ----
+iris %>%  group_by(Species) %>% filter(Sepal.Length > mean(Sepal.Length))  # Species ë³„ë¡œ Sepal.Length ì˜ í‰ê·  ê°’ë³´ë‹¤ í° rowë¥¼ ì¶œë ¥
 
-# 15. window function : n°³ÀÇ ÇàÀ» inputÀ¸·Î ¹Ş¾Æ º¯È¯µÈ n °³ÀÇ Çà outputÀ¸·Î ¸¸µé¾îÁÖ´Â ÇÔ¼ö ----
+# 15. window function : nê°œì˜ í–‰ì„ inputìœ¼ë¡œ ë°›ì•„ ë³€í™˜ëœ n ê°œì˜ í–‰ outputìœ¼ë¡œ ë§Œë“¤ì–´ì£¼ëŠ” í•¨ìˆ˜ ----
 
-# 15.1. lead() : <- À¸·Î ¶¯±â°í ½ÍÀ» ¶§,  lead ÇÑ´Ù! 1¹øÀÌ 10¹øÀ» ¶¯±ä´Ù! ¶ó°í ¿Ü¿öº¸ÀÚ
-x <- c(1:10)  # 1~10±îÁöÀÇ vector Á¦ÀÛ
-lead(x, 2)    # 2¸¸Å­ <- À¸·Î ¶¯°Ü¼­ return
+# 15.1. lead() : <- ìœ¼ë¡œ ë•¡ê¸°ê³  ì‹¶ì„ ë•Œ,  lead í•œë‹¤! 1ë²ˆì´ 10ë²ˆì„ ë•¡ê¸´ë‹¤! ë¼ê³  ì™¸ì›Œë³´ì
+x <- c(1:10)  # 1~10ê¹Œì§€ì˜ vector ì œì‘
+lead(x, 2)    # 2ë§Œí¼ <- ìœ¼ë¡œ ë•¡ê²¨ì„œ return
 
-# 15.2. lag() : -> À¸·Î ¶¯±â°í ½ÍÀ» ¶§,
-x <- c(1:10)  # 1~10±îÁöÀÇ vector Á¦ÀÛ
-lag(x, 2)     # 2¸¸Å­ -> À¸·Î ¶¯°Ü¼­ return
+# 15.2. lag() : -> ìœ¼ë¡œ ë•¡ê¸°ê³  ì‹¶ì„ ë•Œ,
+x <- c(1:10)  # 1~10ê¹Œì§€ì˜ vector ì œì‘
+lag(x, 2)     # 2ë§Œí¼ -> ìœ¼ë¡œ ë•¡ê²¨ì„œ return
