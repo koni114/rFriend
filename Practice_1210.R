@@ -1,7 +1,7 @@
-# 1. ¿©·¯°³ÀÇ dataFrameÀ» ¸®½ºÆ®·Î ¹­±â ----
-# 1.1. R environment »óÀÇ Á¸ÀçÇÏ´Â ¿©·¯ °³ÀÇ DataFrame Áß¿¡¼­ Æ¯Á¤ Á¶°ÇÀ» ¸¸Á·ÇÏ´Â DataFrameÀ» ¼±º° : ls(pattern = "xx") 
-# 1.2. ÇÏ³ªÀÇ List·Î ¹­´Â ¹æ¹ı : mget()
-# 1.3. List·Î ºÎÅÍ Æ¯Á¤ DataFrameÀ» Indexing ÇÏ´Â ¹æ¹ı : list[[1]], list[["name"]]
+# 1. ì—¬ëŸ¬ê°œì˜ dataFrameì„ ë¦¬ìŠ¤íŠ¸ë¡œ ë¬¶ê¸° ----
+# 1.1. R environment ìƒì˜ ì¡´ì¬í•˜ëŠ” ì—¬ëŸ¬ ê°œì˜ DataFrame ì¤‘ì—ì„œ íŠ¹ì • ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” DataFrameì„ ì„ ë³„ : ls(pattern = "xx") 
+# 1.2. í•˜ë‚˜ì˜ Listë¡œ ë¬¶ëŠ” ë°©ë²• : mget()
+# 1.3. Listë¡œ ë¶€í„° íŠ¹ì • DataFrameì„ Indexing í•˜ëŠ” ë°©ë²• : list[[1]], list[["name"]]
 
 install.packages('curl')
 library(data.table)
@@ -9,11 +9,12 @@ library(jsonlite)
 library(curl)
 library(dplyr)
 
-getwd()
-rm(list = ls())  # Environment ¿¡ ÀÖ´Â data »èÁ¦ ¸í·É¾î.
-cat("\014")  # console ¿¡ ÀÖ´Â ±Û±Í »èÁ¦ ¸í·É¾î.
 
-# dataFrame »ı¼º : ¿¹Á¦ ¼öÇàÀ» À§ÇÑ DF »ı¼º
+getwd()
+rm(list = ls())  # Environment ì— ìˆëŠ” data ì‚­ì œ ëª…ë ¹ì–´.
+cat("\014")  # console ì— ìˆëŠ” ê¸€ê·€ ì‚­ì œ ëª…ë ¹ì–´.
+
+# dataFrame ìƒì„± : ì˜ˆì œ ìˆ˜í–‰ì„ ìœ„í•œ DF ìƒì„±
 data_1 <- data.frame(var1 = c(1, 2), var2 = c(3, 4))
 data_2 <- data.frame(var1 = c('a', 'b'), var2 = c('c', 'd'))
 data_3 <- data.frame(var1 = c(TRUE, TRUE), var2 = c(FALSE, TRUE))
@@ -21,29 +22,29 @@ file_1 <- data.frame(var1 = c(1, 2), var2 = c(3, 4))
 file_2 <- data.frame(var1 = c('a', 'b'), var2 = c('c', 'd'))
 file_3 <- data.frame(var1 = c(TRUE, TRUE), var2 = c(FALSE, TRUE))
 
-# environment ¿¡ »ı¼ºµÈ °´Ã¼ È®ÀÎ : ls() ----
+# environment ì— ìƒì„±ëœ ê°ì²´ í™•ì¸ : ls() ----
 ls()
 
-# Æ¯Á¤ ¹®ÀÚ¿­À» Æ÷ÇÑÇÑ environment °´Ã¼ È®ÀÎ ----
+# íŠ¹ì • ë¬¸ìì—´ì„ í¬í•œí•œ environment ê°ì²´ í™•ì¸ ----
 ls(pattern = "data_")
 
-# Æ¯Á¤ ¹®ÀÚ¿­(ex) data_ )À» Æ÷ÇÔÇÑ DF °´Ã¼¸¦ list·Î ¹­±â : mget() ----
+# íŠ¹ì • ë¬¸ìì—´(ex) data_ )ì„ í¬í•¨í•œ DF ê°ì²´ë¥¼ listë¡œ ë¬¶ê¸° : mget() ----
 mget.data_ <- mget(ls(pattern = "data_"))
 mget.file_ <- mget(ls(pattern = "file_"))
 
-# list¿¡ ÀÖ´Â °´Ã¼ slicing ÇÏ±â ----
+# listì— ìˆëŠ” ê°ì²´ slicing í•˜ê¸° ----
 mget.data_[[1]]
 mget.data_[["data_1"]]
 
-# 2. ¹®ÀÚ¿­À» Æ¯Á¤ ±æÀÌ·Î ¸¸µé°í, ºó ÀÚ¸®´Â '0'À¸·Î Ã¤¿ì´Â ¹æ¹ı : sprintf {base}
-# µ¥ÀÌÅÍ°¡ Æ¯Á¤ Çü½ÄÀ¸·Î °íÁ¤µÇ¾î ÀÖÀ» ¶§, ÁÖ·Î »ç¿ë
+# 2. ë¬¸ìì—´ì„ íŠ¹ì • ê¸¸ì´ë¡œ ë§Œë“¤ê³ , ë¹ˆ ìë¦¬ëŠ” '0'ìœ¼ë¡œ ì±„ìš°ëŠ” ë°©ë²• : sprintf {base}
+# ë°ì´í„°ê°€ íŠ¹ì • í˜•ì‹ìœ¼ë¡œ ê³ ì •ë˜ì–´ ìˆì„ ë•Œ, ì£¼ë¡œ ì‚¬ìš©
 
-# dataFrame ¸¸µé±â
+# dataFrame ë§Œë“¤ê¸°
 df <- data.frame(var1 = c(1, 11, 111, 1111))
 
-# sprintf ¸¦ ÀÌ¿ëÇÏ¿© ºó ÀÚ¸®¼ö¿¡ 0 Ã¤¿ì±â : ÀÌ¶§ factor typeÀ¸·Î ÀüÈ¯
-# ex) sprintf("%01d", var1) : 1ÀÚ¸®¼ö ¹®ÀÚ¿­À» ¸¸µéµÇ, 1ÀÚ¸®¼ö°¡ µÇÁö ¾ÊÀ¸¸é 0À¸·Î Ã¤¿ò.
-#    -> ÀÌ ¶§ 1ÀÚ¸®¼öº¸´Ù Å©¸é, Àû¿ëµÇÁö ¾ÊÀ½
+# sprintf ë¥¼ ì´ìš©í•˜ì—¬ ë¹ˆ ìë¦¬ìˆ˜ì— 0 ì±„ìš°ê¸° : ì´ë•Œ factor typeìœ¼ë¡œ ì „í™˜
+# ex) sprintf("%01d", var1) : 1ìë¦¬ìˆ˜ ë¬¸ìì—´ì„ ë§Œë“¤ë˜, 1ìë¦¬ìˆ˜ê°€ ë˜ì§€ ì•Šìœ¼ë©´ 0ìœ¼ë¡œ ì±„ì›€.
+#    -> ì´ ë•Œ 1ìë¦¬ìˆ˜ë³´ë‹¤ í¬ë©´, ì ìš©ë˜ì§€ ì•ŠìŒ
 
 df <- transform(df,
                 var1_01d = sprintf("%01d", var1),
@@ -51,20 +52,20 @@ df <- transform(df,
                 var1_03d = sprintf("%03d", var1)
 )
 
-# ** ÁÖÀÇ! : data type ÀÌ factor ÇüÀ¸·Î º¯È¯ µÊ 
-class(df[,2]) # factor·Î º¯È¯
+# ** ì£¼ì˜! : data type ì´ factor í˜•ìœ¼ë¡œ ë³€í™˜ ë¨ 
+class(df[,2]) # factorë¡œ ë³€í™˜
 
-# 3. ¼Ò¼ö ÀÚ¸® ¼ö¸¦ ÁöÁ¤ÇØÁÖ±â ----
-# 3.1. ¼Ò¼öÁ¡ ÀÚ¸®¼ö ÁöÁ¤ : sprintf(".5f", var) ----
+# 3. ì†Œìˆ˜ ìë¦¬ ìˆ˜ë¥¼ ì§€ì •í•´ì£¼ê¸° ----
+# 3.1. ì†Œìˆ˜ì  ìë¦¬ìˆ˜ ì§€ì • : sprintf(".5f", var) ----
 e <- c(3.141592)
-sprintf("%.1f", e)  # ¼Ò¼öÁ¡ 1Â°ÀÚ¸® ¼ö±îÁö ÁöÁ¤
-sprintf("%.2f", e)  # ¼Ò¼öÁ¡ 2Â°ÀÚ¸® ¼ö±îÁö ÁöÁ¤
+sprintf("%.1f", e)  # ì†Œìˆ˜ì  1ì§¸ìë¦¬ ìˆ˜ê¹Œì§€ ì§€ì •
+sprintf("%.2f", e)  # ì†Œìˆ˜ì  2ì§¸ìë¦¬ ìˆ˜ê¹Œì§€ ì§€ì •
 
-# 3.2. ¼ıÀÚ ÀÚ¸®¼ö ÁöÁ¤ : sprint("1.1f", e) ----
+# 3.2. ìˆ«ì ìë¦¬ìˆ˜ ì§€ì • : sprint("1.1f", e) ----
 sprintf("%1.1f", e)
-sprintf("%10.1f", e)  # ¼ıÀÚ ÀÚ¸®¼ö°¡ º¯°æ µÊÀ» È®ÀÎ -> ¼ıÀÚ ºÎºĞ : 10ÀÚ¸®
+sprintf("%10.1f", e)  # ìˆ«ì ìë¦¬ìˆ˜ê°€ ë³€ê²½ ë¨ì„ í™•ì¸ -> ìˆ«ì ë¶€ë¶„ : 10ìë¦¬
 
-# 4. ´ë¿ë·® µ¥ÀÌÅÍ ºü¸£°Ô ÀĞ¾î¿À´Â ¹æ¹ı : fread() ----
+# 4. ëŒ€ìš©ëŸ‰ ë°ì´í„° ë¹ ë¥´ê²Œ ì½ì–´ì˜¤ëŠ” ë°©ë²• : fread() ----
 library(data.table)
 
 var1 <- rnorm(n = 1000000, mean = 1)
@@ -73,8 +74,8 @@ df.test <- data.frame(var1 = var1, var2 = var2)
 
 write.table(df.test, file = "test.txt")
 
-# system.time functionÀ» ÀÌ¿ëÇØ ½Ã°£ ÃøÁ¤ ½Ã, ÈÎ¾À ºü¸§À» È®ÀÎ °¡´É
-# fread() ·Î È£Ãâ ½Ã, data.table, data.frame type À¸·Î ÀúÀå
+# system.time functionì„ ì´ìš©í•´ ì‹œê°„ ì¸¡ì • ì‹œ, í›¨ì”¬ ë¹ ë¦„ì„ í™•ì¸ ê°€ëŠ¥
+# fread() ë¡œ í˜¸ì¶œ ì‹œ, data.table, data.frame type ìœ¼ë¡œ ì €ì¥
 
 system.time(test2 <- read.table(file = "test.txt",
                                 header = TRUE,
@@ -86,14 +87,14 @@ system.time(test3 <- fread("test.txt",
                            stringsAsFactors = F
                            ))
 
-# 5. JSON data -> RDataframe ÇüÅÂ·Î ÀúÀå : jsonlite package : fromJSON ----
-# JSON Data ÇüÅÂÀÇ data È£Ãâ
+# 5. JSON data -> RDataframe í˜•íƒœë¡œ ì €ì¥ : jsonlite package : fromJSON ----
+# JSON Data í˜•íƒœì˜ data í˜¸ì¶œ
 
-library(jsonlite)  # jsonlite library È£Ãâ(package°¡ ¾ø´Ù¸é, ¼³Ä¡)
-df_repos <- fromJSON("https://api.github.com/users/hadley/repos")  # fromJSON ÇÔ¼ö¸¦ ÀÌ¿ëÇÏ¿© RDataFrame ·Î ÀúÀå
-head(df_repos)  # Àß ÀúÀåµÊÀ» È®ÀÎ
+library(jsonlite)  # jsonlite library í˜¸ì¶œ(packageê°€ ì—†ë‹¤ë©´, ì„¤ì¹˜)
+df_repos <- fromJSON("https://api.github.com/users/hadley/repos")  # fromJSON í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ì—¬ RDataFrame ë¡œ ì €ì¥
+head(df_repos)  # ì˜ ì €ì¥ë¨ì„ í™•ì¸
 
-# 6. '#' °ú °°Àº Æ¯¼ö ¹®ÀÚ°¡ ¼ÓÇØÀÖ´Â ¹®ÀÚ¸¦ °¡Á®¿À°í ½ÍÀ» ¶§, comment.char = "" ----
-# read.table, read.csv µî fileÀ» °¡Á®¿Ã ¶§, parameter ·Î comment.char = "" ¸¦ ³Ö¾îÁÖ¸é µÊ
+# 6. '#' ê³¼ ê°™ì€ íŠ¹ìˆ˜ ë¬¸ìê°€ ì†í•´ìˆëŠ” ë¬¸ìë¥¼ ê°€ì ¸ì˜¤ê³  ì‹¶ì„ ë•Œ, comment.char = "" ----
+# read.table, read.csv ë“± fileì„ ê°€ì ¸ì˜¬ ë•Œ, parameter ë¡œ comment.char = "" ë¥¼ ë„£ì–´ì£¼ë©´ ë¨
 
 
